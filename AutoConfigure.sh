@@ -28,8 +28,8 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 echo -e "${GREEN}oh-my-zsh installed sucessfuly, please change your default shell to ${LIGHTRED}zsh${NOCOLOR}"
 
 # Config oh-my-zsh theme to p10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
-echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k
+echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >> $HOME/.zshrc
 
 echo -e "${BLUE}To use all features it's better to install MesloLGS NF fonts from --> ${LIGHTRED}'https://github.com/romkatv/powerlevel10k#fonts' ${BLUE}and setup to your terminal application from settings.${NOCOLOR}"
 
@@ -39,6 +39,22 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 
 sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting virtualenvwrapper kubectl history emoji encode64 sudo web-search copydir copyfile copybuffer dirhistory jsontools)/g' $HOME/.zshrc
 
+# Switch to colorls
+if ! sudo gem install colorls; then
+  # Colorls is based on ruby. So we try to install ruby.
+  if ! sudo apt install ruby-dev -y; then
+    echo "Please install ${LIGHTRED}ruby${NOCOLOR} and ${LIGHRED}ruby-dev${LIGHTRED}. for Debian based distro run ${PURPLE}'sudo apt install ruby-dev'${NOCOLOR}";
+  else
+    # Retrying to install colorls with ruby package manager
+    sudo gem install colorls;
+  fi
+else
+  # Set alias and export to user zsh default
+  echo "source $(dirname $(gem which colorls))/tab_complete.sh" >> $HOME/.zshrc
+  echo "alias ls='colorls'" >> $HOME/.zshrc
+fi
+
+  
 # Install SpaceVim 
 curl -sLf https://spacevim.org/install.sh | bash
 
