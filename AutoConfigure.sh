@@ -37,7 +37,7 @@ echo -e "${BLUE}To use all features it's better to install MesloLGS NF fonts fro
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
-sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting virtualenvwrapper kubectl history emoji encode64 sudo web-search copydir copyfile copybuffer dirhistory jsontools)/g' $HOME/.zshrc
+sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting virtualenvwrapper kubectl docker docker-compose history emoji encode64 sudo web-search copypath copyfile copybuffer dirhistory jsontools)/g' $HOME/.zshrc
 
 # Switch to colorls
 if ! sudo gem install colorls; then
