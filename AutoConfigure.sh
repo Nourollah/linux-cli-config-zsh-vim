@@ -24,26 +24,25 @@ cd $HOME
 
 # Download oh-my-zsh from GitHub
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 echo -e "${GREEN}oh-my-zsh installed sucessfuly, please change your default shell to ${LIGHTRED}zsh${NOCOLOR}"
 
 # Config oh-my-zsh theme to p10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k
-echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >> $HOME/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM//themes/powerlevel10k
+sed -i '/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k"/g' $HOME/.zshrc
 
 echo -e "${BLUE}To use all features it's better to install MesloLGS NF fonts from --> ${LIGHTRED}'https://github.com/romkatv/powerlevel10k#fonts' ${BLUE}and setup to your terminal application from settings.${NOCOLOR}"
 
 # oh-my-zsh plugins
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM//themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 git clone https://github.com/arzzen/calc.plugin.zsh.git $ZSH_CUSTOM/plugins/calc
-git clone --recursive https://github.com/gko/ssh-connect $ZSH_CUSTOM/plugins/ssh-connect
 sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting virtualenvwrapper ssh-connect kubectl docker docker-compose history emoji encode64 sudo web-search copypath copyfile copybuffer dirhistory jsontools pip node npm calc)/g' $HOME/.zshrc
 
+# Config ssh-connect
+git clone --recursive https://github.com/gko/ssh-connect $ZSH_CUSTOM/plugins/ssh-connect
 echo "source $ZSH/custom/plugins/ssh-connect/ssh-connect.sh" >> $HOME/.zshrc
-sed -i '/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k"/g' $HOME/.zshrc
+
 # Switch to colorls
 if ! sudo gem install colorls; then
   # Colorls is based on ruby. So we try to install ruby.
