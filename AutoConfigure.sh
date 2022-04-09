@@ -37,7 +37,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $ZSH_CUSTOM/plugins/fast-syntax-highlighting
 git clone https://github.com/arzzen/calc.plugin.zsh.git $ZSH_CUSTOM/plugins/calc
-sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting virtualenvwrapper ssh-connect kubectl docker docker-compose history emoji encode64 sudo web-search copypath copyfile copybuffer dirhistory jsontools pip node npm calc)/g' $HOME/.zshrc
+sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting virtualenvwrapper kubectl docker docker-compose history emoji encode64 sudo web-search copypath copyfile copybuffer dirhistory jsontools pip node npm calc)/g' $HOME/.zshrc
 
 # Config ssh-connect
 git clone --recursive https://github.com/gko/ssh-connect $ZSH_CUSTOM/plugins/ssh-connect
