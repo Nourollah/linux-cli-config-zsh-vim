@@ -64,3 +64,20 @@ curl -sLf https://spacevim.org/install.sh | bash
 
 # Deactive relative line number in SpaceVim
 sed -i '25 a \\ \ \ \ relativenumber = false' $HOME/.SpaceVim.d/init.toml
+
+# Creating aliast
+echo "printcsv() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: printcsv <filename>"
+        return 1
+    fi
+
+    if [ -f "$1" ]; then
+        cat "$1" | column -t -s,
+    else
+        echo "Error: File '$1' not found."
+        return 1
+    fi
+}" >> $HOME/.zshrc
+
+echo 'alias lsdu="du -a -h --max-depth=1 | sort -hr"' >> $HOME/.zshrc
