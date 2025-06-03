@@ -44,10 +44,10 @@ git clone --recursive https://github.com/gko/ssh-connect $ZSH_CUSTOM/plugins/ssh
 echo "source $ZSH/custom/plugins/ssh-connect/ssh-connect.sh" >> $HOME/.zshrc
 
 # Switch to colorls
-if ! sudo gem install colorls; then
+if ! lsd; then
   # Colorls is based on ruby. So we try to install ruby.
-  if ! sudo apt install ruby-dev -y; then
-    echo "Please install ${LIGHTRED}ruby${NOCOLOR} and ${LIGHRED}ruby-dev${LIGHTRED}. for Debian based distro run ${PURPLE}'sudo apt install ruby-dev'${NOCOLOR}";
+  if ! sudo apt install lsd -y; then
+    echo "lsd cannot be installed!";
   else
     # Retrying to install colorls with ruby package manager
     sudo gem install colorls;
@@ -55,7 +55,10 @@ if ! sudo gem install colorls; then
 else
   # Set alias and export to user zsh default
   echo "source $(dirname $(gem which colorls))/tab_complete.sh" >> $HOME/.zshrc
-  echo "alias ls='colorls'" >> $HOME/.zshrc
+  echo "alias ls='lsd'" >> $HOME/.zshrc
+  echo "alias tree='lsd --tree'" >> $HOME/.zshrc
+  echo "alias treed='lsd --tree --depth'" >> $HOME/.zshrc
+  echo 'alias lsdu="du -a -h --max-depth=1 | sort -hr"' >> $HOME/.zshrc
 fi
 
   
@@ -80,4 +83,4 @@ echo "printcsv() {
     fi
 }" >> $HOME/.zshrc
 
-echo 'alias lsdu="du -a -h --max-depth=1 | sort -hr"' >> $HOME/.zshrc
+
