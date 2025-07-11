@@ -59,11 +59,12 @@ else
   echo "alias tree='lsd --tree'" >> $HOME/.zshrc
   echo "alias treed='lsd --tree --depth'" >> $HOME/.zshrc
   echo 'alias lsdu="du -a -h --max-depth=1 | sort -hr"' >> $HOME/.zshrc
+  echo "alias vim='lvim'" >> $HOME/.zshrc
 fi
 
   
-# Install SpaceVim 
-curl -sLf https://spacevim.org/install.sh | bash
+# Install LunarVim 
+LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
 
 # Deactive relative line number in SpaceVim
 sed -i '25 a \\ \ \ \ relativenumber = false' $HOME/.SpaceVim.d/init.toml
